@@ -1,0 +1,27 @@
+{
+  "name": "express-default",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "npx nodemon --ignore './sessions' ./bin/www"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "express": "^4.16.4",
+    "express-session": "^1.17.0",
+    "handlebars": "^4.0.12",
+    "hbs": "~4.0.1",
+    "http-errors": "~1.6.2",
+    "method-override": "^3.0.0",
+    "mongoose": "^5.4.15",
+    "morgan": "~1.9.0",
+    "session-file-store": "^1.4.0"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.20.1",
+    "nodemon": "^1.18.5"
+  }
+}

@@ -1,0 +1,13 @@
+<a href="/entries/new" class="block button w-100 mar-t-2 mar-b-3 pad-2 round-1 text-c center">Write about Broccoli</a>
+
+<main role="main">
+  <ul class="entries-list no-bullets no-padding">
+    {{#each entries}}
+      <li class="entry-item pad-b-4">
+        <a href="/entries/{{id}}" class="entry-title font-2 pad-b-1-4 c-white">{{title}}</a>
+        <span class="entry-date block font-3-4 c-lt-gray">Written on {{entry.createdAt}}</span>
+          <p class="entry-stub">{{body}}</p>
+      </li>
+    {{/each}}
+  </ul>
+</main>

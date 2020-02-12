@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="/stylesheets/normalize.css">
+  <link rel="stylesheet" href="/stylesheets/application.css">
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script defer src="/js/application.js"></script>
+
+  <title>Broccoli Blog</title>
+</head>
+
+<body>
+  <header role="banner" class="mar-t-5 pad-t-2 pad-b-4 pad-s-1 wrap-float bg-white">
+    <div class="max-w-700 center wrap-float">
+      <nav class="clearfix mar-b-1">
+        <ul class="no-bullets no-margin no-padding right">
+          {{#if loggedIn}}
+          <li class="pipe-separate t-light-green left">{{login}}</li>
+          <li class="pipe-separate t-light-green left" id="logout"><a href="/login/logout">logout</a></li>
+          <li class="pipe-separate t-light-green left"><a href="/">home</a></li>
+          {{else}}
+          <li class="pipe-separate t-light-green left"><a href="/registr">register</a></li>
+          <li class="pipe-separate t-light-green left"><a href="/login">login</a></li>
+          <li class="pipe-separate t-light-green left"><a href="/">home</a></li>
+          {{/if}}
+        </ul>
+      </nav>
+
+      <div class="logo-container">
+        <img class="logo" src="/images/logo.png" class="center block">
+        <h1>Broccoli Blog</h1>
+      </div>
+    </div>
+  </header>
+  <div class="bg-dk-green pad-t-2 pad-s-1 pad-b-8 mar-b-16 c-white">
+    <div class="max-w-700 center">
+      {{{body}}}
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
