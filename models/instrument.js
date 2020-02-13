@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const instrumentSchema = new mongoose.Schema({
   title: String,
@@ -9,9 +9,9 @@ const instrumentSchema = new mongoose.Schema({
       user: String,
       title: String,
       start: Date,
-      end: Date
-    }
-  ]
+      end: Date,
+    },
+  ],
 });
 
-module.exports = mongoose.model("Instrument", instrumentSchema);
+module.exports = mongoose.model('Instrument', instrumentSchema);
