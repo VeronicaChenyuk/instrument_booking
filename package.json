@@ -8,13 +8,13 @@
   "dependencies": {
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
-    "express": "^4.16.4",
+    "express": "^4.17.1",
     "express-session": "^1.17.0",
-    "handlebars": "^4.0.12",
-    "hbs": "~4.0.1",
+    "handlebars": "^4.7.3",
+    "hbs": "^4.0.6",
     "http-errors": "~1.6.2",
     "method-override": "^3.0.0",
-    "mongoose": "^5.4.15",
+    "mongoose": "^5.8.11",
     "morgan": "~1.9.0",
     "session-file-store": "^1.4.0"
   },
@@ -22,7 +22,7 @@
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.20.1",
-    "nodemon": "^1.18.5"
+    "nodemon": "^1.19.4"
   },
   "description": "Учебный проект для Институт биологии гена Российской академии наук. Приложение бронирования приборов.",
   "main": "app.js",
@@ -36,4 +36,5 @@
     "url": "https://github.com/MishaVyuzh/instrument_booking/issues"
   },
   "homepage": "https://github.com/MishaVyuzh/instrument_booking#readme"
+  }
 }
