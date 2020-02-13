@@ -12,11 +12,11 @@ if (document.getElementById("calendar")) {
       defaultView: "dayGridMonth",
       defaultDate: new Date(),
       header: {
-        left: "prev,next today",
-        center: "title",
-        right: "dayGridMonth,timeGridWeek,timeGridDay,listWeek"
+        left: 'prev,next today',
+        center: 'title',
+        right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek',
       },
-      events: data
+      events: data,
     });
 
     calendar.render();
