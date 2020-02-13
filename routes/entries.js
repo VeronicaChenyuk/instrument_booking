@@ -9,7 +9,7 @@ console.log('started entries');
 // entries
 router.get('/', async (req, res, next) => {
   const entries = await Entry.mostRecent();
-  res.render('entries/index', { entries });
+  res.render('registr/registr', { entries });
 });
 
 router.post('/', async (req, res, next) => {
@@ -22,7 +22,7 @@ router.get('/new', (req, res, next) => {
   res.render('entries/new');
 });
 
-// detail entry
+// detail entry 
 router.get('/:id', async (req, res, next) => {
   const entry = await Entry.findById(req.params.id);
   res.render('entries/show', { entry });
