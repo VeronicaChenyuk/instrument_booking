@@ -1,5 +1,7 @@
 const createError = require('http-errors');
 const express = require('express');
+require('dotenv').config();
+
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
@@ -9,7 +11,7 @@ const FileStore = require('session-file-store')(session);
 
 const mongoose = require('mongoose');
 const indexRouter = require('./routes/index');
-const entriesRouter = require('./routes/entries');
+const mainRouter = require('./routes/main');
 const loginRouter = require('./routes/login');
 const registrRouter = require('./routes/registr');
 
@@ -17,8 +19,8 @@ const app = express();
 
 
 // Подключаем mongoose.
-mongoose.connect('mongodb://localhost:27017/instrument', { useNewUrlParser: true });
-
+mongoose.connect('mongodb+srv://Krolik:Krolik@cluster0-jlft0.mongodb.net/instrument?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.set('useCreateIndex', true);
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
@@ -59,7 +61,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/', indexRouter);
-app.use('/entries', entriesRouter);
+app.use('/main', mainRouter);
 app.use('/login', loginRouter);
 app.use('/registr', registrRouter);
 

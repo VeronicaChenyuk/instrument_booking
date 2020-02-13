@@ -2,7 +2,7 @@
 // Подключаем mongoose.
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost:27017/instrument', { useNewUrlParser: true });
+mongoose.connect('mongodb+srv://Krolik:Krolik@cluster0-jlft0.mongodb.net/instrument?retryWrites=true&w=majority', { useNewUrlParser: true });
 
 const Instrument = require('../models/instrument');
 

@@ -1,29 +1,38 @@
-const express = require('express');
-const User = require('../models/user');
+const express = require("express");
+const User = require("../models/user");
 
 const router = express.Router();
 
-router.get('/', async (req, res, next) => {
-  res.render('login/login');
-});
-
-router.get('/logout', async (req, res, next) => {
-  req.session.destroy();
-  res.clearCookie('connect.sid');
-  res.redirect('/');
-});
-
-router.post('/auth', async (req, res, next) => {
-  const { email, password } = req.body;
-  const user = await User.findOne({ email });
-  if (user) {
-    if (email === user.email && password === user.password) {
-      req.session.user = user._id;
-      res.redirect('/entries');
-    } else {
-      const notLogined = 'Имя пользователя или пароль не существуют';
-      res.render('login/login', { notLogined });
+async function checkToBd(req, res, next) {
+  const email = req.body.email;
+  const password = req.body.password;
+  const user = await User.findOne({ loginEmail: email, password });
+  console.log(user);
+  if (!!user) {
+    req.session.user = user._id;
+    if (user.status === "admin") {
+      req.session.status = "godMode";
     }
+    next();
+  } else {
+    res.render("login/login", { error: true });
   }
+}
+
+router.get("/", async (req, res) => {
+  res.render("login/login");
 });
+
+router.post("/", checkToBd, async (req, res) => {
+  res.redirect("/");
+});
+
+router.get("/logout", async (req, res) => {
+  delete req.session.user;
+  if (req.session.status === 'admin') {
+    delete req.session.status;
+  }
+  res.redirect("/");
+});
+
 module.exports = router;

@@ -22,15 +22,19 @@
       </div>
       <nav class="header-content">
         <ul>
-        <li><a href="/">Главная</a></li>
-        <li><a href="/login">Войти</a></li>
+          <li><a href="/">Главная</a></li>
+          {{#if user}}
+            <li><a href="/login/logout">Выйти</a></li>
+          {{else}}
+            <li><a href="/login">Войти</a></li>
+          {{/if}}
         </ul>
       </nav>
     </header>
     <main>
       <div class="main-header">
         <h2 class="main-title">Welcome</h2>
-        <p class="main-subtitle" >Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+        <p class="main-subtitle">Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
       </div>
       <div class="content">
         {{{body}}}
