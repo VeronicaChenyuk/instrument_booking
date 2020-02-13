@@ -5,16 +5,32 @@
 
 .header {
   display: flex;
+  position: fixed;
+  top: 0px;
   height: 80px;
-  justify-content: space-between;
+  width: 100%;
+  justify-content: space-around;
   align-items: center;
+  border-bottom: 2px solid black;
+  box-shadow: 0 0 20px;
+  margin-bottom: 30px;
+  background-color: grey;
 }
 .header ul {
   list-style: none;
+  margin: 0px;
 }
 .header li {
   display: inline;
   margin: 0px 20px;
+}
+.header .logo {
+  height: 60px;
+  width: 80px;
+  margin-left: 50px;
+}
+.header-link {
+  color: white;
 }
 
 .main-header {
@@ -36,12 +52,16 @@
 }
 .list-column {
   display: flex;
+  margin: auto;
   flex-direction: column;
-  flex: 0 0 50%;
-  padding: 0px 30px;
+  flex: 0 0 45%;
+  padding: 25px;
   margin-bottom: 100px;
+  height: 500px;
   max-height: 500px;
   overflow: hidden;
+  border: 2px solid black;
+  box-shadow: 0 0 10px;
 }
 .appliance-title {
   display: inline;
@@ -52,21 +72,21 @@
   font-size: 14px;
 }
 
-.appliaance {
+.appliance {
   text-align: center;
   font-size: 24px;
   margin-bottom: 100px;
 }
-.appliaance-img {
+.appliance-img {
   margin: auto;
-  height: 500px;
-  width: 900px;
+  height: 250px;
+  width: 400px;
 }
-.appliaance-img img {
+.appliance-img img {
   height: 100%;
   width: 100%;
 }
-.appliaance-title {
+.appliance-title {
   font-size: 42px;
   margin: 50px 0px 20px;
 }
@@ -82,10 +102,4 @@
   border-radius: 50px;
   border: 2px solid black;
   margin: 50px auto 0px;
-}
-
-.list-images {
-  margin: auto;
-  height: 150px;
-  width: 300px;
 }

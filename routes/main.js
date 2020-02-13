@@ -55,4 +55,10 @@ router.get("/error", (req, res) => {
   res.render("main/error", { user: req.session.user });
 });
 
+router.get("/appliance/:id", async (req, res) => {
+  const id = req.params.id;
+  const appliance = await Instrument.findById(id);
+  res.render("main/appliance", { appliance });
+});
+ 
 module.exports = router;
