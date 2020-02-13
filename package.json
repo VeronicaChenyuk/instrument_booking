@@ -23,5 +23,18 @@
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.20.1",
     "nodemon": "^1.19.4"
+  },
+  "description": "Учебный проект для Институт биологии гена Российской академии наук. Приложение бронирования приборов.",
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MishaVyuzh/instrument_booking.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MishaVyuzh/instrument_booking/issues"
+  },
+  "homepage": "https://github.com/MishaVyuzh/instrument_booking#readme"
   }
 }
