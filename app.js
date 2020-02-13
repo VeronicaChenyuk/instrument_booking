@@ -17,7 +17,7 @@ const app = express();
 
 
 // Подключаем mongoose.
-mongoose.connect('mongodb://localhost:27017/broccoli', { useNewUrlParser: true });
+mongoose.connect('mongodb://localhost:27017/instrument', { useNewUrlParser: true });
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

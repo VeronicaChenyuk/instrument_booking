@@ -1,8 +1,8 @@
+/* eslint-disable import/no-unresolved */
 // Подключаем mongoose.
 const mongoose = require('mongoose');
 
 mongoose.connect('mongodb://localhost:27017/instrument', { useNewUrlParser: true });
-
 
 const Instrument = require('../models/instrument');
 
