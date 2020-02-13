@@ -1,3 +1,8 @@
+.error {
+  color: red;
+  text-align: center;
+}
+
 .header {
   display: flex;
   height: 80px;
@@ -34,8 +39,9 @@
   flex-direction: column;
   flex: 0 0 50%;
   padding: 0px 30px;
-  margin-bottom: 30px;
-  max-height: 200px;
+  margin-bottom: 100px;
+  max-height: 500px;
+  overflow: hidden;
 }
 .appliance-title {
   display: inline;
@@ -76,4 +82,10 @@
   border-radius: 50px;
   border: 2px solid black;
   margin: 50px auto 0px;
+}
+
+.list-images {
+  margin: auto;
+  height: 150px;
+  width: 300px;
 }
