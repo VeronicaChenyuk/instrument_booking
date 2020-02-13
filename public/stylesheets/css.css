@@ -2,7 +2,9 @@
   color: red;
   text-align: center;
 }
-
+main {
+  padding-bottom: 100px;
+}
 .header {
   display: flex;
   position: fixed;
@@ -15,6 +17,7 @@
   box-shadow: 0 0 20px;
   margin-bottom: 30px;
   background-color: grey;
+  z-index: 100;
 }
 .header ul {
   list-style: none;
@@ -87,18 +90,14 @@
   height: 100%;
   width: 100%;
 }
-.appliance-window-img{
+.appliance-window-img {
   height: 500px;
   width: 850px;
   margin-bottom: 40px;
 }
-.appliance-window-title{
+.appliance-window-title {
   font-size: 50px;
 }
-
-
-
-
 
 .record-button {
   display: flex;
@@ -111,4 +110,21 @@
   border-radius: 50px;
   border: 2px solid black;
   margin: 50px auto 0px;
+}
+
+
+.record {
+  margin: 50px auto 0px;
+  display: flex;
+  justify-content: center;
+}
+.record button {
+  display: block;
+  margin: auto;
+}
+.date {
+  margin: 0px 5px;
+}
+.time{
+  margin-right: 10px;
 }

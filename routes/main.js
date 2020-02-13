@@ -26,6 +26,7 @@ async function checkToBd(req, res, next) {
   }
 }
 async function checkUser(req, res, next) {
+  console.log(req.body.date, req.body.time);
   const { user, status } = req.session;
   const email = req.body.email;
   const password = req.body.password;
@@ -41,7 +42,7 @@ async function checkUser(req, res, next) {
   }
 }
 
-router.get("/", async (req, res, next) => {
+router.get("/", async (req, res) => {
   const { user, status } = req.session;
   const instruments = await Instrument.find();
   console.log(req.session);
@@ -81,21 +82,27 @@ router.get("/appliance/:id", async (req, res) => {
   res.render("main/appliance", { appliance, user, status });
 });
 
-router.get('/appliance/:id/calendar', async (req, res) => {
-  const id = req.params.id;  
+router.get("/appliance/:id/calendar", async (req, res) => {
+  const id = req.params.id;
   const appliance = await Instrument.findById(id);
-  console.log('adsgag');
-  
   const { events } = appliance;
-  res.send([      {
-    title: 'All Day Event',
-    start: '2020-02-01'
-  },
-  {
-    title: 'Long Event',
-    start: '2020-02-07',
-    end: '2020-02-10'
-  }]);
+  res.send(events);
+});
+router.post("/appliance/:id/record", async (req, res) => {
+  const id = req.params.id;
+  const userId = req.session.user;
+  const user = await User.findById(userId);
+  const start = `${req.body.fromDate} ${req.body.fromTime}`;
+  const end = `${req.body.toDate} ${req.body.toTime}`;
+
+  const appliance = await Instrument.findById(id);
+  appliance.events.push({
+    title: user.email,
+    start,
+    end
+  });
+  await appliance.save();
+  res.redirect(`/main/appliance/${id}`);
 });
 
 module.exports = router;

@@ -1,38 +1,28 @@
 /* eslint-disable import/no-unresolved */
 // Подключаем mongoose.
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-mongoose.connect('mongodb+srv://Krolik:Krolik@cluster0-jlft0.mongodb.net/instrument?retryWrites=true&w=majority', { useNewUrlParser: true });
+mongoose.connect(
+  "mongodb+srv://Krolik:Krolik@cluster0-jlft0.mongodb.net/instrument?retryWrites=true&w=majority",
+  { useNewUrlParser: true }
+);
 
-const Instrument = require('../models/instrument');
-
+const Instrument = require("../models/instrument");
 
 const instrumentes = [
   {
-    title: 'Прибор 1',
-    body: 'Улучшенная версия 2015 года',
-    profilePicture: '\\',
-  },
-  {
-    title: 'Прибор 2',
-    body: 'Улучшенная версия 2014 года',
-    profilePicture: '\\',
-  },
-  {
-    title: 'Прибор 3',
-    body: 'Улучшенная версия 2013 года',
-    profilePicture: '\\',
-  },
-  {
-    title: 'Прибор 4',
-    body: 'Улучшенная версия 2012 года',
-    profilePicture: '\\',
-  },
-  {
-    title: 'Прибор 5',
-    body: 'Улучшенная версия 2011 года',
-    profilePicture: '\\',
-  },
+    title: "Прибор 2",
+    body: "Улучшенная версия 2014 года",
+    profilePicture: "\\",
+    events: [
+      {
+        user: "String",
+        title: "String",
+        start: "2020-02-13 02:00",
+        end: "2020-02-13 15:00"
+      }
+    ]
+  }
 ];
 
 Instrument.insertMany(instrumentes).then(() => {

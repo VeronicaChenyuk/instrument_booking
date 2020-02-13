@@ -1,5 +1,4 @@
-const mongoose = require('mongoose');
-
+const mongoose = require("mongoose");
 
 const instrumentSchema = new mongoose.Schema({
   title: String,
@@ -8,12 +7,11 @@ const instrumentSchema = new mongoose.Schema({
   events: [
     {
       user: String,
-      tittle: String,
+      title: String,
       start: Date,
       end: Date
     }
   ]
 });
 
-
-module.exports = mongoose.model('Instrument', instrumentSchema);
+module.exports = mongoose.model("Instrument", instrumentSchema);
