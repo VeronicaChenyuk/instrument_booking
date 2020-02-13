@@ -15,25 +15,25 @@
 </head>
 
 <body>
+  <header class="header">
+    <div class="header-content">
+      <img src="/images/logo.png" alt="" class="logo">
+    </div>
+    <nav class="header-content">
+      <ul>
+        <li><a class="header-link"href="/">Главная</a></li>
+        {{#if status}}
+        <li><a class="header-link"href="/main/registration">Зарегистрировать нового пользователя</a></li>
+        {{/if}}
+        {{#if user}}
+        <li><a class="header-link"href="/main/logout">Выйти</a></li>
+        {{else}}
+        <li><a class="header-link"href="/main/login">Войти</a></li>
+        {{/if}}
+      </ul>
+    </nav>
+  </header>
   <div class="container">
-    <header class="header">
-      <div class="header-content">
-        <img src="" alt="" class="logo">
-      </div>
-      <nav class="header-content">
-        <ul>
-          <li><a href="/">Главная</a></li>
-          {{#if status}}
-            <li><a href="/main/registration">Зарегистрировать нового пользователя</a></li>
-          {{/if}}
-          {{#if user}}
-            <li><a href="/main/logout">Выйти</a></li>
-          {{else}}
-            <li><a href="/main/login">Войти</a></li>
-          {{/if}}
-        </ul>
-      </nav>
-    </header>
     <main>
       <div class="main-header">
         <h2 class="main-title">Welcome</h2>
