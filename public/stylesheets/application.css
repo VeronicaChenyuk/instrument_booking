@@ -11,14 +11,15 @@
 /* element styling */
 html {
   height: 100%;
-  background-color: #32bb7d;
-  background: url(../images/diamond-bg.jpg);
+  /* background-color: #32bb7d;
+  background: url(../images/diamond-bg.jpg); */
   background-attachment: fixed;
   line-height: 1.4;
 }
 
 body {
   height: 100%;
+  margin-top: 150px;
 }
 
 a {

@@ -9,17 +9,17 @@ const User = require('../models/user');
 
 const users = [
   {
-    loginEmail: 'beresneva.veronika@mail.ru',
+    email: 'beresneva.veronika@mail.ru',
     password: 'Krolik',
     status: 'admin',
   },
   {
-    loginEmail: 'ivanov.stepan@mail.ru',
+    email: 'ivanov.stepan@mail.ru',
     password: 'Pizza',
     status: 'user',
   },
   {
-    loginEmail: 'dolgoryki.grisha@mail.ru',
+    email: 'dolgoryki.grisha@mail.ru',
     password: 'Krolik',
     status: 'user',
   },
