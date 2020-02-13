@@ -60,5 +60,22 @@ router.get("/appliance/:id", async (req, res) => {
   const appliance = await Instrument.findById(id);
   res.render("main/appliance", { appliance });
 });
- 
+
+router.get('/appliance/:id/calendar', async (req, res) => {
+  const id = req.params.id;  
+  const appliance = await Instrument.findById(id);
+  console.log('adsgag');
+  
+  const { events } = appliance;
+  res.send([      {
+    title: 'All Day Event',
+    start: '2020-02-01'
+  },
+  {
+    title: 'Long Event',
+    start: '2020-02-07',
+    end: '2020-02-10'
+  }]);
+});
+
 module.exports = router;
