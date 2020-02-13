@@ -67,11 +67,12 @@
   display: inline;
   font-size: 22px;
   margin-bottom: 20px;
+  font-size: 42px;
+  margin: 50px 0px 20px;
 }
 .appliance-body {
   font-size: 14px;
 }
-
 .appliance {
   text-align: center;
   font-size: 24px;
@@ -86,10 +87,18 @@
   height: 100%;
   width: 100%;
 }
-.appliance-title {
-  font-size: 42px;
-  margin: 50px 0px 20px;
+.appliance-window-img{
+  height: 500px;
+  width: 850px;
+  margin-bottom: 40px;
 }
+.appliance-window-title{
+  font-size: 50px;
+}
+
+
+
+
 
 .record-button {
   display: flex;
