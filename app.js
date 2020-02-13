@@ -1,5 +1,7 @@
 const createError = require('http-errors');
 const express = require('express');
+require('dotenv').config();
+
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
@@ -16,8 +18,8 @@ const app = express();
 
 
 // Подключаем mongoose.
-mongoose.connect('mongodb://localhost:27017/instrument', { useNewUrlParser: true, useUnifiedTopology: true });
-
+mongoose.connect('mongodb+srv://Krolik:Krolik@cluster0-jlft0.mongodb.net/instrument?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.set('useCreateIndex', true);
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');

@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const instrumentSchema = new mongoose.Schema({
   title: String,
   body: String,
-  profilePicture: Buffer,
+  profilePicture: String,
 });
 
 
