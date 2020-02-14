@@ -14,7 +14,6 @@ const FileStore = require('session-file-store')(session);
 const mongoose = require('mongoose');
 const indexRouter = require('./routes/index');
 const mainRouter = require('./routes/main');
-const registrRouter = require('./routes/registr');
 
 const app = express();
 
@@ -64,7 +63,6 @@ app.use((req, res, next) => {
 
 app.use('/', indexRouter);
 app.use('/main', mainRouter);
-app.use('/registr', registrRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

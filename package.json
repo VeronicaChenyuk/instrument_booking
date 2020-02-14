@@ -6,6 +6,10 @@
     "start": "npx nodemon --ignore './sessions' ./bin/www"
   },
   "dependencies": {
+    "@fullcalendar/core": "^4.4.0",
+    "@fullcalendar/daygrid": "^4.4.0",
+    "@fullcalendar/list": "^4.4.0",
+    "@fullcalendar/timegrid": "^4.4.0",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "dotenv": "^8.2.0",
@@ -14,9 +18,12 @@
     "handlebars": "^4.7.3",
     "hbs": "^4.1.0",
     "http-errors": "~1.6.2",
+    "jquery": "^3.4.1",
     "method-override": "^3.0.0",
+    "moment": "^2.24.0",
     "mongoose": "^5.8.12",
     "morgan": "~1.9.0",
+    "multer": "^1.4.2",
     "session-file-store": "^1.4.0"
   },
   "devDependencies": {

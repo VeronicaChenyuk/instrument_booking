@@ -1,4 +1,7 @@
-<form id='registr' method='POST' action='/registr/add'>
+  {{#if error}}
+<h2 class="error">Пользователь с данным e-mail уже существует</h2>
+{{/if}}
+<form id='registr' method='POST' action='/main/registration'>
   <div class="form-group">
     <label for="exampleInputLogin">E-mail нового пользователя:</label>
     <input type="email" class="form-control" id="exampleInputLogin" aria-describedby="basic-addon1" name='email'>
