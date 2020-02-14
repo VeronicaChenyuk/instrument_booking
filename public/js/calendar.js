@@ -15,9 +15,13 @@ if (document.getElementById('calendar')) {
       header: {
         left: 'prev,next today',
         center: 'title',
-        right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek',
+        right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek,interaction',
       },
       events: data,
+      // dateClick(info) {
+      //   // change the day's background color just for fun
+      //   info.dayEl.style.backgroundColor = 'red';
+      // },
     });
 
     calendar.render();
