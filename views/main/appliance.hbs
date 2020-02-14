@@ -1,16 +1,17 @@
 <div class="appliance appliance-window">
   <div class="appliance-img appliance-window-img"><img
-      src="https://upload.wikimedia.org/wikipedia/commons/7/76/Dfsd_dgh_gfcjngy_df.JPG{{appliance.address}}" alt="">
+      src="/images/{{appliance.profilePicture}}" alt="">
   </div>
+    {{#if status}}
+      <a class="upload" href="/main/appliance/{{appliance._id}}/upload">Обновить изображение</a>
+      <a class="upload" href="/main/appliance/{{appliance._id}}/delete">Удалить этот прибор</a>
+    {{/if}}
   <div class="appliance-title appliance-window-title">
     {{appliance.title}}
   </div>
   <div class="appliance-text appliance-window-text">
     {{appliance.body}}
   </div>
-  {{#if status}}
-
-  {{/if}}
 </div>
 
 <div id='calendar'></div>

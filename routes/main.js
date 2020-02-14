@@ -104,5 +104,43 @@ router.post('/appliance/:id/record', async (req, res) => {
   await appliance.save();
   res.redirect(`/main/appliance/${id}`);
 });
+router.get('/appliance', async (req, res) => {
+  const { user, status } = req.session;
+  res.render('main/newinstrument', { user, status });
+});
+router.post('/appliance', async (req, res) => {
+  const newInstrument = new Instrument(
+    {
+      title: req.body.title,
+      body: req.body.body,
+      profilePicture: '',
+    });
+  newInstrument.save();
+  const id = newInstrument._id;
+  res.redirect(`/main/appliance/${id}/upload`);
+});
+
+router.get('/appliance/:id/upload', async (req, res) => {
+  const { user, status } = req.session;
+  const id = req.params.id;
+  res.render('main/images', { id, user, status });
+});
+
+router.post('/appliance/:id/upload', async (req, res) => {
+  const filedata = req.file;
+  const instrument = await Instrument.findById(req.params.id);
+  const fileName = filedata.originalname;
+  instrument.profilePicture = fileName;
+  await instrument.save()
+  if (!filedata) res.send('Ошибка при загрузке файла');
+  else res.redirect('/');
+});
+
+router.get('/appliance/:id/delete', async (req, res) => {
+  const id = req.params.id;
+  await Instrument.findByIdAndDelete(id);
+  console.log('Deleted');
+  res.redirect('/');
+});
 
 module.exports = router;

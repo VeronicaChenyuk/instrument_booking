@@ -1,17 +1,11 @@
-<form id='registr' method='POST' action='/registr/add'>
+<form id='registr' method='POST' action='/main/appliance'>
   <div class="form-group">
     <label for="exampleInputTitle">Название прибора:</label>
     <input type="text" class="form-control" id="exampleInputTitle" aria-describedby="basic-addon1" name='title'>
   </div>
   <div class="form-group">
     <label for="exampleInputEmail1">Описание прибора:</label>
-    <input type="text" class="form-control" id="exampleInputBody" aria-describedby="basic-addon1" name='body'>
+    <textarea type="text" class="form-control" id="exampleInputBody" aria-describedby="basic-addon1" name='body'></textarea>
   </div>
   <button type="submit" class="btn btn-primary">Добавить</button>
-</form>
-<h1>Upload file</h1>
-<form action="./public/upload" method="post" enctype="multipart/form-data">
-  <label>Файл</label><br>
-  <input type="file" name="filedata" /><br><br>
-  <input type="submit" value="Send" />
 </form>

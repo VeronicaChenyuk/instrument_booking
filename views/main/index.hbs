@@ -2,10 +2,12 @@
 <div class="list">
   {{#each instruments}}
   <div class="list-column">
-    <img src="images/gen.jpg" class="appliance-img" alt="">
+    <img src="images/{{profilePicture}}" class="appliance-img" alt="">
     <title class="appliance-title">{{title}}</title>
     <p class="appliance-body">{{body}}</p>
-    <a href="/main/appliance/{{_id}}">Перейти</a>
+    <div class="appliance-div">
+      <a href="/main/appliance/{{_id}}">Перейти</a>
+    </div>
   </div>
   {{/each}}
 </div>
