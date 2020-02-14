@@ -10,7 +10,7 @@ if (document.getElementById('calendar')) {
     const calendar = new FullCalendar.Calendar(calendarEl, {
       plugins: ['interaction', 'dayGrid', 'timeGrid', 'list'],
       defaultView: 'dayGridMonth',
-      defaultDate: '2020-02-07',
+      defaultDate: new Date(),
       header: {
         left: 'prev,next today',
         center: 'title',

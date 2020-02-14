@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 
-
 const instrumentSchema = new mongoose.Schema({
   title: String,
   body: String,
@@ -8,12 +7,11 @@ const instrumentSchema = new mongoose.Schema({
   events: [
     {
       user: String,
-      tittle: String,
+      title: String,
       start: Date,
-      end: Date
-    }
-  ]
+      end: Date,
+    },
+  ],
 });
-
 
 module.exports = mongoose.model('Instrument', instrumentSchema);

@@ -1,12 +1,13 @@
 /* *       - https://developer.mozilla.org/en-US/docs/Web/CSS/Universal_selectors
 /* :after  - https://developer.mozilla.org/en-US/docs/Web/CSS/%3A%3Aafter*/
 /* :before - https://developer.mozilla.org/en-US/docs/Web/CSS/%3A%3Abefore */
-*, *:after, *:before {
+*,
+*:after,
+*:before {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-
 
 /* element styling */
 html {
@@ -27,15 +28,16 @@ a {
   text-decoration: none;
 }
 
-  a:hover {
-    color: #6ec7a5;
-    text-decoration: underline;
-  }
-
-input[type=text], input[type=password], textarea {
-  color: #05724f;
+a:hover {
+  color: #6ec7a5;
+  text-decoration: underline;
 }
 
+input[type="text"],
+input[type="password"],
+textarea {
+  color: #05724f;
+}
 
 /* positioning */
 .block {
@@ -58,7 +60,6 @@ input[type=text], input[type=password], textarea {
   float: right;
 }
 
-
 /* formatting */
 .bg-dk-green {
   background-color: #05724f;
@@ -75,11 +76,11 @@ input[type=text], input[type=password], textarea {
   text-decoration: none;
 }
 
-  .button:hover {
-    color: white;
-    text-decoration: none;
-    background-color: #6ec7a5;
-  }
+.button:hover {
+  color: white;
+  text-decoration: none;
+  background-color: #6ec7a5;
+}
 
 .c-dk-green {
   color: #05724f;
@@ -93,16 +94,16 @@ input[type=text], input[type=password], textarea {
   color: #fefefe;
 }
 
-  a.c-white:hover {
-    color: #fefefe;
-  }
+a.c-white:hover {
+  color: #fefefe;
+}
 
 .clearfix:after {
-   content: " "; /* Older browser do not support empty content */
-   visibility: hidden;
-   display: block;
-   height: 0;
-   clear: both;
+  content: " "; /* Older browser do not support empty content */
+  visibility: hidden;
+  display: block;
+  height: 0;
+  clear: both;
 }
 
 .col-3 {
@@ -113,8 +114,8 @@ input[type=text], input[type=password], textarea {
   font-size: 2em;
 }
 
-.font-3-4{
-  font-size: .75em;
+.font-3-4 {
+  font-size: 0.75em;
 }
 
 .h-10 {
@@ -202,7 +203,7 @@ input[type=text], input[type=password], textarea {
 }
 
 .pad-b-1-4 {
-  padding-bottom: .25em;
+  padding-bottom: 0.25em;
 }
 
 .pad-b-2 {
@@ -240,14 +241,14 @@ input[type=text], input[type=password], textarea {
   border-right: 1px solid;
 }
 
-  .pipe-separate:first-of-type {
-    padding-left: 0;
-  }
+.pipe-separate:first-of-type {
+  padding-left: 0;
+}
 
-  .pipe-separate:last-of-type {
-    padding-right: 0;
-    border-right: none;
-  }
+.pipe-separate:last-of-type {
+  padding-right: 0;
+  border-right: none;
+}
 
 .round-1 {
   border-radius: 1em;
@@ -289,5 +290,5 @@ input[type=text], input[type=password], textarea {
 }
 
 .logo {
-  width:160px;
+  width: 160px;
 }
