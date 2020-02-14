@@ -97,19 +97,24 @@ router.get('/appliance/:id/calendar', async (req, res) => {
 });
 
 function checkCorrectDate(fromDate, fromTime, toDate, toTime) {
-  console.log(fromDate, fromTime, toDate, toTime);
   const fDate = fromDate.replace('-', '');
   const fTime = fromTime.replace(':', '');
   const tDate = toDate.replace('-', '');
   const tTime = toTime.replace(':', '');
-  if (fDate > tDate) {
-    return false;
-  }
-  if (fDate === tDate && fTime > tTime) {
+  const fullDateNow = (new Date()).toJSON().substring(0, 10).replace(/[^0-9]+/g, '');
+  const dateNow = fullDateNow.substring(0, 8);
+  const timeNow = fullDateNow.substring(8, 9) + (Number(fullDateNow.substring(9, 10)) + 3) + fullDateNow.substring(10, 12);
+
+  if ((fDate === tDate && fTime > tTime)
+    || (fDate === dateNow && fTime < timeNow)
+    || fDate < dateNow
+    || fDate > tDate) {
     return false;
   }
   return true;
 }
+
+// function check
 
 router.post('/appliance/:id/record', async (req, res) => {
   const { user } = req.session;
@@ -127,7 +132,9 @@ router.post('/appliance/:id/record', async (req, res) => {
   const appliance = await Instrument.findById(id);
   const { events } = appliance;
 
-  if (!checkCorrectDate(fromDate, fromTime, toDate, toTime)) {
+  if (
+    !checkCorrectDate(fromDate, fromTime, toDate, toTime)
+  ) {
     return res.redirect(`/main/appliance/${id}&split&${error}&split&${msg}`);
   }
 
