@@ -16,10 +16,10 @@
 
 <div id='calendar'></div>
 
-<div class="record">
   {{#if error}}
-  <h2 class="error">Данное время записи занято, выбитите другое</h2>
+    <h2 class="error">{{msg}}</h2>
   {{/if}}
+<div class="record">
   {{#if user}}
     <form method='POST' action='/main/appliance/{{appliance._id}}/record'>
       <div class="form-group">

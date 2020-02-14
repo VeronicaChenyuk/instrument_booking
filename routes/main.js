@@ -75,29 +75,64 @@ router.get('/error', (req, res) => {
   res.render('main/error', { user, status });
 });
 
+// TODO:
 router.get('/appliance/:id', async (req, res) => {
   const { user, status } = req.session;
-  const { id } = req.params;
+  const arrParams = req.params.id.split('&split&');
+  const id = arrParams[0];
+  const error = arrParams[1];
+  const msg = arrParams[2];
   const appliance = await Instrument.findById(id);
-  res.render('main/appliance', { appliance, user, status });
+  res.render('main/appliance', {
+    appliance, user, status, error, msg,
+  });
 });
 
 router.get('/appliance/:id/calendar', async (req, res) => {
-  const { id } = req.params;
+  const str = req.params.id;
+  const id = str.split('&split&')[0];
   const appliance = await Instrument.findById(id);
   const { events } = appliance;
   res.send(events);
 });
+
+function checkCorrectDate(fromDate, fromTime, toDate, toTime) {
+  console.log(fromDate, fromTime, toDate, toTime);
+  const fDate = fromDate.replace('-', '');
+  const fTime = fromTime.replace(':', '');
+  const tDate = toDate.replace('-', '');
+  const tTime = toTime.replace(':', '');
+  if (fDate > tDate) {
+    return false;
+  }
+  if (fDate === tDate && fTime > tTime) {
+    return false;
+  }
+  return true;
+}
+
 router.post('/appliance/:id/record', async (req, res) => {
+  const { user } = req.session;
   const { id } = req.params;
-  const userId = req.session.user;
-  const user = await User.findById(userId);
-  const start = `${req.body.fromDate} ${req.body.fromTime}`;
-  const end = `${req.body.toDate} ${req.body.toTime}`;
+  const {
+    fromDate, fromTime, toDate, toTime,
+  } = req.body;
+  const userId = user;
+  const objUser = await User.findById(userId);
+  const start = `${fromDate} ${fromTime}`;
+  const end = `${toDate} ${toTime}`;
+  const msg = 'Время некорректно';
+  const error = true;
 
   const appliance = await Instrument.findById(id);
+  const { events } = appliance;
+
+  if (!checkCorrectDate(fromDate, fromTime, toDate, toTime)) {
+    return res.redirect(`/main/appliance/${id}&split&${error}&split&${msg}`);
+  }
+
   appliance.events.push({
-    title: user.email,
+    title: objUser.email,
     start,
     end,
   });
@@ -142,5 +177,6 @@ router.get('/appliance/:id/delete', async (req, res) => {
   console.log('Deleted');
   res.redirect('/');
 });
+
 
 module.exports = router;
