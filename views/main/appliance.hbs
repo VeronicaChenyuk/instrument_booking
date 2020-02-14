@@ -3,8 +3,8 @@
       src="/images/{{appliance.profilePicture}}" alt="">
   </div>
     {{#if status}}
-      <a class="upload" href="/main/appliance/{{appliance._id}}/upload">Обновить изображение</a>
-      <a class="upload" href="/main/appliance/{{appliance._id}}/delete">Удалить этот прибор</a>
+      <a class="upload btn btn-primary btn-sm" href="/main/appliance/{{appliance._id}}/upload">Обновить изображение</a>
+      <a class="upload btn btn-primary btn-sm" href="/main/appliance/{{appliance._id}}/delete">Удалить этот прибор</a>
     {{/if}}
   <div class="appliance-title appliance-window-title">
     {{appliance.title}}

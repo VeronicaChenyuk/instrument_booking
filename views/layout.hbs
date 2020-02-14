@@ -33,25 +33,26 @@
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script defer src="/js/application.js"></script>
 
-  <title>Broccoli Blog</title>
+  <title>Booking instruments</title>
 </head>
 
 <body>
   <header class="header">
     <div class="header-content">
-      <img src="/images/logo.png" alt="" class="logo">
+      <a class="imageHome"href="/"><img src="/images/logo4.png" alt="" class="logo"></a>
     </div>
     <nav class="header-content">
       <ul>
-        <li><a class="header-link"href="/">Главная</a></li>
+        {{!-- <a><a class="header-link"href="/">Главная</a></a> --}}
         {{#if status}}
-        <li><a class="header-link"href="/main/registration">Зарегистрировать нового пользователя</a></li>
-        <li><a class="header-link"href="/main/appliance">Добавить новый прибор</a></li>
+        <li><a class="header-link btn btn-primary"href="/main/registration">Зарегистрировать нового пользователя</a></li>
+        <li><a class="header-link btn btn-primary"href="/main/deleteUser">Удалить пользователя</a></li>
+        <li><a class="header-link btn btn-primary"href="/main/appliance">Добавить новый прибор</a></li>
         {{/if}}
         {{#if user}}
-        <li><a class="header-link"href="/main/logout">Выйти</a></li>
+        <li><a class="header-link btn btn-primary"href="/main/logout">Выйти</a></li>
         {{else}}
-        <li><a class="header-link"href="/main/login">Войти</a></li>
+        <li><a class="header-link btn btn-primary"href="/main/login">Войти</a></li>
         {{/if}}
       </ul>
     </nav>
