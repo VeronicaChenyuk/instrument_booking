@@ -1,6 +1,8 @@
 const createError = require('http-errors');
 const express = require('express');
 require('dotenv').config();
+const multer = require('multer');
+
 
 const path = require('path');
 const cookieParser = require('cookie-parser');
@@ -29,6 +31,7 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(multer({storage:storageConfig}).single("filedata"));
 
 
 // Allows you to use PUT, DELETE with forms.
@@ -76,5 +79,35 @@ app.use((err, req, res, next) => {
   res.status(err.status || 500);
   res.render('error');
 });
+
+app.post("./public/upload", function (req, res, next) {
+   
+  let filedata = req.file;
+  if(!filedata)
+      res.send("Ошибка при загрузке файла");
+  else
+      res.send("Файл загружен");
+});
+// //ИЗОБРАЖЕНИЕ
+// app.post('/profile', upload.single('avatar'), function (req, res, next) {
+//   // req.file - файл `avatar`
+//   // req.body сохранит текстовые поля, если они будут
+// })
+
+// app.post('/photos/upload', upload.array('photos', 12), function (req, res, next) {
+//   // req.files - массив файлов `photos`
+//   // req.body сохранит текстовые поля, если они будут
+// })
+
+// var cpUpload = upload.fields([{ name: 'avatar', maxCount: 1 }, { name: 'gallery', maxCount: 8 }])
+// app.post('/cool-profile', cpUpload, function (req, res, next) {
+//   // req.files - объект (String -> Array), где fieldname - ключ, и значение - массив файлов
+//   //
+//   // например:
+//   //  req.files['avatar'][0] -> File
+//   //  req.files['gallery'] -> Array
+//   //
+//   // req.body сохранит текстовые поля, если они будут
+// })
 
 module.exports = app;

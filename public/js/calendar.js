@@ -11,6 +11,7 @@ if (document.getElementById('calendar')) {
       plugins: ['interaction', 'dayGrid', 'timeGrid', 'list'],
       defaultView: 'dayGridMonth',
       defaultDate: new Date(),
+      lang: 'ru',
       header: {
         left: 'prev,next today',
         center: 'title',
