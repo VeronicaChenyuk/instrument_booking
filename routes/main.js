@@ -178,5 +178,18 @@ router.get('/appliance/:id/delete', async (req, res) => {
   res.redirect('/');
 });
 
+router.get('/deleteUser', async (req, res) => {
+  const { user, status } = req.session;
+  const users = await User.find({status: 'user'});
+  res.render('main/deleteUser', {users, user, status});
+});
+
+router.delete('/deleteUser', async (req, res) => {
+  const email = req.body.deletedUser;
+  console.log(email);
+  await User.findOneAndDelete({ email });
+  res.json();
+});
+
 
 module.exports = router;

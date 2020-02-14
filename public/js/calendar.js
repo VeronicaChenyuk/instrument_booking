@@ -26,4 +26,10 @@ if (document.getElementById('calendar')) {
 
     calendar.render();
   });
+
+
+  // document.getElementById('calendar').addEventListener('click', (event)=>{
+  //   console.log(event.target);
+  //   event.target.style.backgroundColor = 'black';
+  // });
 }

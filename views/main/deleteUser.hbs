@@ -1,0 +1,11 @@
+<form method='POST' action='/main/deleteUser' class="deleteUser">
+  <div class="form-group form-delete">
+    <label class="delete-title"for="exampleInputEmail1">Выбирите пользователя, которого хотите удалить</label>
+    <select name="deletedUser" id="deletedUser">
+      {{#each users}}
+        <option name="email" value="{{email}}">{{email}}</option>
+      {{/each}}
+    </select>
+  <button type="submit" class="btn btn-primary">Удалить</button>
+</form>
+

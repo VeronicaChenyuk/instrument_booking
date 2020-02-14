@@ -16,8 +16,8 @@ main {
   border-bottom: 2px solid black;
   box-shadow: 0 0 20px;
   margin-bottom: 30px;
-  background-color: grey;
   z-index: 100;
+  background-color: #fff;
 }
 .header ul {
   list-style: none;
@@ -27,15 +27,24 @@ main {
   display: inline;
   margin: 0px 20px;
 }
-.header .logo {
-  height: 60px;
-  width: 80px;
-  margin-left: 50px;
-}
 .header-link {
   color: white;
+  font-size: 20px;
 }
-
+.header-link:hover {
+  box-shadow: 0 0 10px blue;
+}
+.imageHome {
+  display: block;
+  height: 70px;
+  width: 70px;
+  margin-left: 50px;
+}
+.header .logo {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+}
 .main-header {
   text-align: center;
   margin-bottom: 100px;
@@ -74,10 +83,9 @@ main {
   margin: 0px 0px 20px;
 }
 .appliance-body {
-  max-height: 65px;
+  height: 65px;
   font-size: 14px;
   overflow: hidden;
-
 }
 .appliance {
   text-align: center;
@@ -85,7 +93,7 @@ main {
   margin-bottom: 100px;
 }
 .appliance-img {
-  margin: auto;
+  margin: 20px auto;
   height: 300px;
   width: 100%;
 }
@@ -120,7 +128,6 @@ main {
   margin: 50px auto 0px;
 }
 
-
 .record {
   margin: 50px auto 0px;
   display: flex;
@@ -133,10 +140,9 @@ main {
 .date {
   margin: 0px 5px;
 }
-.time{
+.time {
   margin-right: 10px;
 }
-
 
 .upload {
   display: block;
@@ -147,5 +153,24 @@ main {
   margin: 0px auto 20px;
 }
 .upload:hover {
-  color: red;
+  color: lightblue;
+}
+
+.form-delete {
+  display: flex;
+  align-items: center;
+}
+.delete-title {
+  font-size: 20px;
+  margin: 0px 10px 0px 0px;
+}
+#deletedUser {
+  box-sizing: border-box;
+  height: 35px;
+  font-size: 20px;
+  margin-right: 10px;
+  padding: 0px 5px;
+  border-radius: 10px;
+  border: 2px solid blue;
+  background-color: white;
 }
