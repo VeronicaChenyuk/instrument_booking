@@ -30,12 +30,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 const storageConfig = multer.diskStorage({
-  destination: (req, file, cb) =>{
-      cb(null, "uploads");
+  destination: (req, file, cb) => {
+    cb(null, 'public/images');
   },
-  filename: (req, file, cb) =>{
-      cb(null, file.originalname);
-  }
+  filename: (req, file, cb) => {
+    cb(null, file.originalname);
+  },
 });
 
 app.use(cookieParser());
