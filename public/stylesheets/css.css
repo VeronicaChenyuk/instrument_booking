@@ -81,8 +81,10 @@ main {
   font-size: 30px;
   margin: 0px 0px 20px;
   max-height: 90px;
+  height: 90px;
   overflow: hidden;
 }
+
 .appliance-body {
   height: 65px;
   font-size: 14px;
