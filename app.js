@@ -31,7 +31,7 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(multer({storage:storageConfig}).single("filedata"));
+app.use(multer({ storage: storageConfig }).single('filedata'));
 
 
 // Allows you to use PUT, DELETE with forms.
@@ -80,13 +80,10 @@ app.use((err, req, res, next) => {
   res.render('error');
 });
 
-app.post("./public/upload", function (req, res, next) {
-   
-  let filedata = req.file;
-  if(!filedata)
-      res.send("Ошибка при загрузке файла");
-  else
-      res.send("Файл загружен");
+app.post('./public/upload', (req, res, next) => {
+  const filedata = req.file;
+  if (!filedata) res.send('Ошибка при загрузке файла');
+  else res.send('Файл загружен');
 });
 // //ИЗОБРАЖЕНИЕ
 // app.post('/profile', upload.single('avatar'), function (req, res, next) {
