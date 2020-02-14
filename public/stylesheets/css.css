@@ -69,18 +69,19 @@ main {
   flex: 0 0 45%;
   padding: 25px;
   margin-bottom: 100px;
-  height: 600px;
-  max-height: 600px;
+  /* height: 600px; */
+  /* max-height: 600px; */
   overflow: hidden;
   border: 2px solid black;
   box-shadow: 0 0 10px;
 }
 .appliance-title {
   display: inline;
-  font-size: 22px;
   margin-bottom: 20px;
-  font-size: 42px;
+  font-size: 30px;
   margin: 0px 0px 20px;
+  max-height: 90px;
+  overflow: hidden;
 }
 .appliance-body {
   height: 65px;
@@ -173,4 +174,9 @@ main {
   border-radius: 10px;
   border: 2px solid blue;
   background-color: white;
+}
+
+.appliance-content {
+  display: flex;
+  flex-direction: column;
 }
