@@ -89,6 +89,7 @@ main {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
 .appliance-body {
   flex: 0 0 74%;
   font-size: 14px;

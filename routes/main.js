@@ -1,4 +1,5 @@
 const express = require('express');
+const nodemailer = require('nodemailer');
 const User = require('../models/user');
 const Instrument = require('../models/instrument');
 
@@ -26,16 +27,12 @@ async function checkToBd(req, res, next) {
   }
 }
 async function checkUser(req, res, next) {
-  console.log(req.body.date, req.body.time);
   const { user, status } = req.session;
   const { email } = req.body;
   const { password } = req.body;
   const checkUser = await User.findOne({ email });
-  console.log(!!checkUser, email, password);
   if (checkUser === null) {
-    console.log('fdfsf');
     await User.create({ email, password });
-    console.log('GGGGGGGG');
     next();
   } else {
     res.render('main/registration', { error: true, user, status });
@@ -45,7 +42,6 @@ async function checkUser(req, res, next) {
 router.get('/', async (req, res) => {
   const { user, status } = req.session;
   const instruments = await Instrument.find();
-  console.log(req.session);
   res.render('main/index', { instruments, user, status });
 });
 
@@ -75,7 +71,6 @@ router.get('/error', (req, res) => {
   res.render('main/error', { user, status });
 });
 
-// TODO:
 router.get('/appliance/:id', async (req, res) => {
   const { user, status } = req.session;
   const arrParams = req.params.id.split('&split&');
@@ -97,19 +92,24 @@ router.get('/appliance/:id/calendar', async (req, res) => {
 });
 
 function checkCorrectDate(fromDate, fromTime, toDate, toTime) {
-  console.log(fromDate, fromTime, toDate, toTime);
   const fDate = fromDate.replace('-', '');
   const fTime = fromTime.replace(':', '');
   const tDate = toDate.replace('-', '');
   const tTime = toTime.replace(':', '');
-  if (fDate > tDate) {
-    return false;
-  }
-  if (fDate === tDate && fTime > tTime) {
-    return false;
-  }
+  const fullDateNow = (new Date()).toJSON().substring(0, 10).replace(/[^0-9]+/g, '');
+  const dateNow = fullDateNow.substring(0, 8);
+  const timeNow = fullDateNow.substring(8, 9) + (Number(fullDateNow.substring(9, 10)) + 3) + fullDateNow.substring(10, 12);
+
+  // if ((fDate === tDate && fTime > tTime)
+  //   || (fDate === dateNow && fTime < timeNow)
+  //   || fDate < dateNow
+  //   || fDate > tDate) {
+  //   return false;
+  // }
   return true;
 }
+
+// function check
 
 router.post('/appliance/:id/record', async (req, res) => {
   const { user } = req.session;
@@ -127,7 +127,9 @@ router.post('/appliance/:id/record', async (req, res) => {
   const appliance = await Instrument.findById(id);
   const { events } = appliance;
 
-  if (!checkCorrectDate(fromDate, fromTime, toDate, toTime)) {
+  if (
+    !checkCorrectDate(fromDate, fromTime, toDate, toTime)
+  ) {
     return res.redirect(`/main/appliance/${id}&split&${error}&split&${msg}`);
   }
 
@@ -137,19 +139,60 @@ router.post('/appliance/:id/record', async (req, res) => {
     end,
   });
   await appliance.save();
+
+  async function main() {
+    // Generate test SMTP service account from ethereal.email
+    // Only needed if you don't have a real mail account for testing
+    const testAccount = await nodemailer.createTestAccount();
+    // create reusable transporter object using the default SMTP transport
+    const transporter = nodemailer.createTransport({
+      host: 'smtp.mail.ru',
+      port: 465,
+      secure: true, // true for 465, false for other ports
+      auth: {
+        user: 'nii.gena@bk.ru', // generated ethereal user
+        pass: 'Nii123456', // generated ethereal password
+      },
+    });
+
+    // send mail with defined transport object
+    const info = await transporter.sendMail({
+      from: '"Booking instrument 🧬" <nii.gena@bk.ru>', // sender address
+      to: 'bbyugh@mail.ru', // list of receivers
+      subject: 'Вы записаны! ', // Subject line
+      text: 'Информация о записе', // plain text body
+      html: `<b>Здравствуйте! На сервисе Booking instrument Интститута биологии гена у Вас появилась новая запись!</b>
+                                <p>Ваше бронирование: с <strong>${start}</strong> до <strong>${end}</strong> на прибор <i>${appliance.title}.</i></p>
+                                <p>Более подробная информация у администратора сайта. </p>
+                                <p>Обратитесь к администратору, если вы хотите изменить запись или отменить бронирование.</p>`, // html body
+    });
+
+    console.log('Message sent: %s', info.messageId);
+    // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
+
+    // Preview only available when sending through an Ethereal account
+    console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+    // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
+    res.send('Письмо отправлено!');
+  }
+  main().catch(console.error);
+
   res.redirect(`/main/appliance/${id}`);
 });
+
 router.get('/appliance', async (req, res) => {
   const { user, status } = req.session;
   res.render('main/newinstrument', { user, status });
 });
+
 router.post('/appliance', async (req, res) => {
   const newInstrument = new Instrument(
     {
       title: req.body.title,
       body: req.body.body,
       profilePicture: '',
-    });
+    },
+  );
   newInstrument.save();
   const id = newInstrument._id;
   res.redirect(`/main/appliance/${id}/upload`);
@@ -157,7 +200,7 @@ router.post('/appliance', async (req, res) => {
 
 router.get('/appliance/:id/upload', async (req, res) => {
   const { user, status } = req.session;
-  const id = req.params.id;
+  const { id } = req.params;
   res.render('main/images', { id, user, status });
 });
 
@@ -166,27 +209,25 @@ router.post('/appliance/:id/upload', async (req, res) => {
   const instrument = await Instrument.findById(req.params.id);
   const fileName = filedata.originalname;
   instrument.profilePicture = fileName;
-  await instrument.save()
+  await instrument.save();
   if (!filedata) res.send('Ошибка при загрузке файла');
   else res.redirect('/');
 });
 
 router.get('/appliance/:id/delete', async (req, res) => {
-  const id = req.params.id;
+  const { id } = req.params;
   await Instrument.findByIdAndDelete(id);
-  console.log('Deleted');
   res.redirect('/');
 });
 
 router.get('/deleteUser', async (req, res) => {
   const { user, status } = req.session;
-  const users = await User.find({status: 'user'});
-  res.render('main/deleteUser', {users, user, status});
+  const users = await User.find({ status: 'user' });
+  res.render('main/deleteUser', { users, user, status });
 });
 
 router.delete('/deleteUser', async (req, res) => {
   const email = req.body.deletedUser;
-  console.log(email);
   await User.findOneAndDelete({ email });
   res.json();
 });
