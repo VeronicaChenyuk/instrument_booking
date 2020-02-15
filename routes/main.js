@@ -89,7 +89,7 @@ router.get('/appliance/:id/calendar', async (req, res) => {
   const appliance = await Instrument.findById(id);
   const { events } = appliance;
   res.send(events);
-});
+}); 
 
 function checkCorrectDate(fromDate, fromTime, toDate, toTime) {
   const fDate = fromDate.replace('-', '');
