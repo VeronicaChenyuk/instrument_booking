@@ -1,14 +1,14 @@
 <script defer src="/js/calendar.js"></script>
 <div class="list">
   {{#each instruments}}
-  <div class="list-column">
-    <img src="images/{{profilePicture}}" class="appliance-img" alt="">
+  <div class="list-column" onClick="window.location='/main/appliance/{{_id}}'">
+    <img src="images/{{profilePicture}}" class="appliance-img">
     <div class="appliance-content">
       <p class="appliance-title" title="{{title}}">{{title}}</p>
       <p class="appliance-body">{{body}}</p>
-      <div class="appliance-div">
-        <a href="/main/appliance/{{_id}}" class="btn btn-primary">Перейти</a>
-      </div>
+      {{!-- <div class="appliance-div">
+        <a href="/main/appliance/{{_id}}" class="btn btn-primary">Перейти</a> 
+      </div> --}}
     </div>
   </div>
   {{/each}}
