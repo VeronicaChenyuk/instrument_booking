@@ -91,25 +91,38 @@ router.get('/appliance/:id/calendar', async (req, res) => {
   res.send(events);
 }); 
 
-function checkCorrectDate(fromDate, fromTime, toDate, toTime) {
-  const fDate = fromDate.replace('-', '');
-  const fTime = fromTime.replace(':', '');
-  const tDate = toDate.replace('-', '');
-  const tTime = toTime.replace(':', '');
-  const fullDateNow = (new Date()).toJSON().substring(0, 10).replace(/[^0-9]+/g, '');
-  const dateNow = fullDateNow.substring(0, 8);
-  const timeNow = fullDateNow.substring(8, 9) + (Number(fullDateNow.substring(9, 10)) + 3) + fullDateNow.substring(10, 12);
-
-  // if ((fDate === tDate && fTime > tTime)
-  //   || (fDate === dateNow && fTime < timeNow)
-  //   || fDate < dateNow
-  //   || fDate > tDate) {
-  //   return false;
-  // }
-  return true;
+function convertDate(date) {
+  return Number(date.replace(/[^0-9]+/g, ''));
 }
 
-// function check
+function checkCorrectDate(fromDate, fromTime, toDate, toTime) {
+  const fDate = convertDate(fromDate);
+  const fTime = convertDate(fromTime);
+  
+  const tDate = convertDate(toDate);
+  const tTime = convertDate(toTime);
+
+  const date = new Date();
+  const dateNow = Number('' + date.getFullYear() + date.getMonth() + date.getDate());
+  const hours = date.getHours() < 10 ? '0' + date.getHours() : '' + date.getHours();
+  const minutes = date.getMinutes() < 10 ? '0' + date.getMinutes() : '' + date.getMinutes();
+  const timeNow = Number(hours + minutes);
+
+  // const a = (fDate === tDate && fTime > tTime);
+  // const b = (fDate === dateNow && fTime < timeNow);
+  // const c = fDate < dateNow;
+  // const d = tDate > fDate;
+  // console.log(fDate, fTime, '|',tDate, tTime, '|', dateNow, timeNow);
+
+  // console.log(a, b, c, d)
+  if ((fDate === tDate && fTime > tTime)
+    || (fDate === dateNow && fTime < timeNow)
+    || fDate < dateNow
+    || fDate > tDate) {
+    return false;
+  }
+  return true;
+}
 
 router.post('/appliance/:id/record', async (req, res) => {
   const { user } = req.session;
