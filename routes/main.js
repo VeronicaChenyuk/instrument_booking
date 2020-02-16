@@ -89,32 +89,33 @@ router.get('/appliance/:id/calendar', async (req, res) => {
   const appliance = await Instrument.findById(id);
   const { events } = appliance;
   res.send(events);
-}); 
+});
 
 function convertDate(date) {
   return Number(date.replace(/[^0-9]+/g, ''));
 }
 
+function getDateNow(date) {
+  // const date = new Date();
+  const dateNow = Number(`${date.getFullYear()}${date.getMonth()}${date.getDate()}`);
+  const hours = date.getHours() < 10 ? `0${date.getHours()}` : `${date.getHours()}`;
+  const minutes = date.getMinutes() < 10 ? `0${date.getMinutes()}` : `${date.getMinutes()}`;
+  const timeNow = Number(hours + minutes);
+  return {
+    dateNow,
+    timeNow,
+  };
+}
+
 function checkCorrectDate(fromDate, fromTime, toDate, toTime) {
   const fDate = convertDate(fromDate);
   const fTime = convertDate(fromTime);
-  
+
   const tDate = convertDate(toDate);
   const tTime = convertDate(toTime);
-
   const date = new Date();
-  const dateNow = Number('' + date.getFullYear() + date.getMonth() + date.getDate());
-  const hours = date.getHours() < 10 ? '0' + date.getHours() : '' + date.getHours();
-  const minutes = date.getMinutes() < 10 ? '0' + date.getMinutes() : '' + date.getMinutes();
-  const timeNow = Number(hours + minutes);
+  const { dateNow, timeNow } = getDateNow(date);
 
-  // const a = (fDate === tDate && fTime > tTime);
-  // const b = (fDate === dateNow && fTime < timeNow);
-  // const c = fDate < dateNow;
-  // const d = tDate > fDate;
-  // console.log(fDate, fTime, '|',tDate, tTime, '|', dateNow, timeNow);
-
-  // console.log(a, b, c, d)
   if ((fDate === tDate && fTime > tTime)
     || (fDate === dateNow && fTime < timeNow)
     || fDate < dateNow
@@ -122,6 +123,25 @@ function checkCorrectDate(fromDate, fromTime, toDate, toTime) {
     return false;
   }
   return true;
+}
+
+function isReserve(events, fromDate, fromTime, toDate, toTime) {
+  const check = true;
+  const date = new Date();
+  const { dateNow, timeNow } = getDateNow(date);
+
+  const filterEvents = events.filter((obj) => {
+    const fullDateObj = getDateNow(obj.start);
+    if (fullDateObj.dateNow > dateNow) {
+      return true;
+    }
+    if (fullDateObj.dateNow === dateNow && fullDateObj.timeNow >= timeNow) {
+      return true;
+    }
+    return false;
+  });
+
+  return check;
 }
 
 router.post('/appliance/:id/record', async (req, res) => {
@@ -139,7 +159,8 @@ router.post('/appliance/:id/record', async (req, res) => {
 
   const appliance = await Instrument.findById(id);
   const { events } = appliance;
-
+  // TODO: isReserve нет проверок
+  isReserve(events, fromDate, fromTime, toDate, toTime);
   if (
     !checkCorrectDate(fromDate, fromTime, toDate, toTime)
   ) {
